@@ -2,7 +2,6 @@ package pila
 
 // Pruebas unitarias
 import (
-	"fmt"
 	"testing"
 )
 
@@ -12,20 +11,20 @@ func TestPila(t *testing.T) {
 	p.Push(1)
 	p.Push(2)
 	p.Push(3)
-	for !p.EstaVacia() {
-		dato, _ := p.Pop()
-		fmt.Println(dato)
+
+	dato, _ := p.Pop()
+
+	if dato != 3 {
+		t.Errorf("Se esperaba 3 y se obtuvo %d", dato)
 	}
-	// Output:
-	// 3
-	// 2
-	// 1
 }
 
 func TestPilaVacia(t *testing.T) {
 	p := NuevaPila[int]()
+
 	_, err := p.Pop()
-	fmt.Println(err)
-	// Output:
-	// Pila vacía
+
+	if err == nil {
+		t.Errorf("Se esperaba un error y no se obtuvo")
+	}
 }
